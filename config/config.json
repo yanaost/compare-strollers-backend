@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "Blackspot123!",
+    "database": "compare_strollers",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "Blackspot123!",
+    "database": "compare_strollers_test",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "Blackspot123!",
+    "database": "compare_strollers",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+} 
