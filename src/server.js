@@ -15,6 +15,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/health', (_req, res) => res.send('ok')); // fast, no DB call
+
+const port = process.env.PORT || 10000;
+app.listen(port, '0.0.0.0', () => console.log(`API listening on ${port}`));
+
 // CORS configuration - more permissive for development
 app.use(cors({
     origin: 'http://localhost:5173', // Explicitly set your frontend origin

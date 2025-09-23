@@ -1,9 +1,8 @@
 const { Sequelize } = require('sequelize');
 
 // Create Sequelize instance
-const sequelize = new Sequelize('compare_strollers', 'root', 'Blackspot123!', {
-  host: 'localhost',
-  dialect: 'mysql',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
   logging: false, // Set to console.log to see SQL queries
   pool: {
     max: 5,
