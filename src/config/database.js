@@ -17,7 +17,6 @@ const sync = async () => {
   try {
     await sequelize.authenticate();
     console.log('Database connection has been established successfully.');
-    
     // Sync all models
     await sequelize.sync();
     console.log('Database synchronized successfully');

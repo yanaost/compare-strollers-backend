@@ -2,11 +2,11 @@ const { Stroller, Feature, StrollerFeatureValue, FeatureGroup } = require('../mo
 
 const seedDatabase = async () => {
   try {
-    // // Clear existing data
-    // await StrollerFeature.destroy({ where: {} });
-    // await Feature.destroy({ where: {} });
-    // await FeatureGroup.destroy({ where: {} });
-    // await Stroller.destroy({ where: {} });
+    // Clear existing data
+    await StrollerFeatureValue.destroy({ where: {} });
+    await Feature.destroy({ where: {} });
+    await FeatureGroup.destroy({ where: {} });
+    await Stroller.truncate({ cascade: true, restartIdentity: true });
 
     // Create feature groups
     const featureGroups = await FeatureGroup.bulkCreate([
@@ -50,13 +50,15 @@ const seedDatabase = async () => {
         modelName: 'Dragonfly',
         alternativeModelNames: ['Dragonfly 2.0'],
         brand: 'Bugaboo',
-        imagePath: '/images/dragonfly.jpg'
+        imagePath: '/images/dragonfly.jpg',
+        modelDescription: ""
       },
       {
         modelName: 'Yoyo2',
         alternativeModelNames: ['Yoyo'],
         brand: 'Babyzen',
-        imagePath: '/images/yoyo2.jpg'
+        imagePath: '/images/yoyo2.jpg',
+        modelDescription: ""
       }
     ]);
 

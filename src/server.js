@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const strollerRoutes = require('./routes/strollerRoutes');
+
 const { sequelize, Stroller } = require('./models');
 const { sync } = require('./config/database');
 const seedDatabase = require('./seeders/seed');
