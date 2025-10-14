@@ -76,7 +76,7 @@ exports.searchStrollers = async (req, res) => {
         [Op.or]: [
           { modelName: { [Op.like]: `%${query}%` } },
           { brand: { [Op.like]: `%${query}%` } },
-          { alternativeModelNames: { [Op.like]: `%${query}%` } }
+          where(cast(col('alternativeModelNames'), 'TEXT'), { [Op.iLike]: `%${query}%` })
         ]
       },
       attributes: ['strollerId', 'modelName', 'brand']
