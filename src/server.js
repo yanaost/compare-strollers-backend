@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const strollerRoutes = require('./routes/strollerRoutes');
 
 const { sequelize, Stroller } = require('./models');
@@ -18,12 +17,19 @@ app.use((req, res, next) => {
 
 app.get('/health', (_req, res) => res.send('ok')); // fast, no DB call
 
-const port = process.env.PORT || 10000;
-app.listen(port, '0.0.0.0', () => console.log(`API listening on ${port}`));
+const isDev = process.env.NODE_ENV !== 'production';
+const ALLOWED_ORIGINS = [
+  process.env.FRONTEND_ORIGIN,
+  isDev ? 'http://localhost:5173' : undefined,
+].filter(Boolean);
 
 // CORS configuration - more permissive for development
 app.use(cors({
-    origin: 'http://localhost:5173', // Explicitly set your frontend origin
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+      return callback (new Error(`CORS: Origin ${origin} not allowed`));
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
@@ -35,8 +41,8 @@ app.use(cors({
 app.options('*', cors());
 
 // Middleware
-app.use(bodyParser.json()); // This helps us read JSON data from requests
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/strollers', strollerRoutes);
@@ -96,7 +102,8 @@ app.use((err, req, res, next) => {
 });
 
 // Set port
-const PORT = process.env.PORT || 5001;
+const PORT = Number(process.env.PORT || 5001);
+const HOST = '0.0.0.0';
 
 // Sync database, seed data, and start server
 const startServer = async () => {
@@ -106,14 +113,18 @@ const startServer = async () => {
     console.log('Database tables synchronized successfully');
 
     // Seed the database
-    await seedDatabase();
-    console.log('Database seeded successfully');
+    if (process.env.SEED_ON_BOOT === 'true') {
+      await seedDatabase(); // make sure seeds are idempotent
+      console.log('Database seeded successfully');
+    }
 
     // Start the server
-    app.listen(PORT, () => {
+    app.listen(PORT, HOST, () => {
       console.log(`Server is running on port ${PORT}`);
-      console.log(`Test the server by visiting: http://localhost:${PORT}`);
-      console.log(`Test the database by visiting: http://localhost:${PORT}/test-db`);
+      if (isDev) {
+        console.log(`Test the server by visiting: http://localhost:${PORT}`);
+        console.log(`Test the database by visiting: http://localhost:${PORT}/test-db`);
+      }
     });
   } catch (error) {
     console.error('Unable to start server:', error);
