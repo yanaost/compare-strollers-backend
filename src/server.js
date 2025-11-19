@@ -18,12 +18,12 @@ app.use((req, res, next) => {
 app.get('/health', (_req, res) => res.send('ok')); // fast, no DB call
 
 const isDev = process.env.NODE_ENV !== 'production';
+
 const ALLOWED_ORIGINS = [
   process.env.FRONTEND_ORIGIN,
   isDev ? 'http://localhost:5173' : undefined,
 ].filter(Boolean);
 
-// CORS configuration - more permissive for development
 app.use(cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
@@ -114,6 +114,7 @@ const startServer = async () => {
 
     // Seed the database
     if (process.env.SEED_ON_BOOT === 'true') {
+      console.log('seeeeeding2-->', process.env.SEED_ON_BOOT);
       await seedDatabase(); // make sure seeds are idempotent
       console.log('Database seeded successfully');
     }

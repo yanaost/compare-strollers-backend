@@ -28,12 +28,12 @@ const seedDatabase = async () => {
     // Create features
     const features = await Feature.bulkCreate([
       // Basic Information
-      { featureId: 1, key: 'type', title: 'Type', featureGroupId: 1 },
-      { featureId: 2, key: 'strollerWeight', title: 'Stroller weight', featureGroupId: 1 },
-      { featureId: 3, key: 'unfoldedDimensions', title: 'Unfolded dimensions (h×w×l)', featureGroupId: 1 },
-      { featureId: 4, key: 'foldedDimensions', title: 'Folded dimensions (h×w×l)', featureGroupId: 1 },
-      { featureId: 5, key: 'chassisMaterial', title: 'Chassis material', featureGroupId: 1 },
-      { featureId: 6, key: 'countryOfOrigin', title: 'Country of origin', featureGroupId: 1 },
+      { featureId: 3, key: 'type', title: 'Type', featureGroupId: 1 },
+      { featureId: 4, key: 'strollerWeight', title: 'Stroller weight', featureGroupId: 1 },
+      { featureId: 5, key: 'unfoldedDimensions', title: 'Unfolded dimensions (h×w×l)', featureGroupId: 1 },
+      { featureId: 6, key: 'foldedDimensions', title: 'Folded dimensions (h×w×l)', featureGroupId: 1 },
+      { featureId: 2, key: 'chassisMaterial', title: 'Chassis material', featureGroupId: 1 },
+      { featureId: 1, key: 'countryOfOrigin', title: 'Country of origin', featureGroupId: 1 },
       { featureId: 7, key: 'strollerAvailableAsPushchairOnly', title: 'Stroller available as a pushchair (seat unit configuration) only; newborn accessories (like a carrycot) need to be purchased separately', featureGroupId: 1 },
       { featureId: 8, key: 'onlyAvailableAsStrollerSystem', title: 'Only available as a stroller system', featureGroupId: 1 },
 
