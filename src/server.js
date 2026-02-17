@@ -114,7 +114,6 @@ const startServer = async () => {
 
     // Seed the database
     if (process.env.SEED_ON_BOOT === 'true') {
-      console.log('seeeeeding2-->', process.env.SEED_ON_BOOT);
       await seedDatabase(); // make sure seeds are idempotent
       console.log('Database seeded successfully');
     }

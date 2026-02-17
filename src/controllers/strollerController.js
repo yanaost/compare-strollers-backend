@@ -74,8 +74,8 @@ exports.searchStrollers = async (req, res) => {
     const strollers = await Stroller.findAll({
       where: {
         [Op.or]: [
-          { modelName: { [Op.like]: `%${query}%` } },
-          { brand: { [Op.like]: `%${query}%` } },
+          { modelName: { [Op.iLike]: `%${query}%` } },
+          { brand: { [Op.iLike]: `%${query}%` } },
           where(cast(col('alternativeModelNames'), 'TEXT'), { [Op.iLike]: `%${query}%` })
         ]
       },
