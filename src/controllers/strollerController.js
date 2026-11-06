@@ -157,6 +157,7 @@ exports.getStrollersForComparison = async (req, res) => {
         strollerId: stroller.strollerId,
         modelName: stroller.modelName,
         modelDescription: stroller.modelDescription,
+        tagline: stroller.tagline,
         alternativeModelNames: stroller.alternativeModelNames,
         brand: stroller.brand,
         imagePath: stroller.imagePath,
