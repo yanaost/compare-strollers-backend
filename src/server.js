@@ -118,6 +118,9 @@ const startServer = async () => {
     await sequelize.query(
       'ALTER TABLE stroller ADD COLUMN IF NOT EXISTS tagline VARCHAR(255)'
     );
+    await sequelize.query(
+      'ALTER TABLE stroller ALTER COLUMN "modelDescription" TYPE TEXT'
+    );
 
     // Seed the database
     if (process.env.SEED_ON_BOOT === 'true') {
