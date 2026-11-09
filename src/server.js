@@ -112,6 +112,13 @@ const startServer = async () => {
     await sync();
     console.log('Database tables synchronized successfully');
 
+    // sync() creates missing tables but never alters existing ones, so a column
+    // added to a model after its table was created has to be added by hand.
+    // IF NOT EXISTS makes this a no-op on every boot after the first.
+    await sequelize.query(
+      'ALTER TABLE stroller ADD COLUMN IF NOT EXISTS tagline VARCHAR(255)'
+    );
+
     // Seed the database
     if (process.env.SEED_ON_BOOT === 'true') {
       await seedDatabase(); // make sure seeds are idempotent
