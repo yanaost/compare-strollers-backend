@@ -15,6 +15,10 @@ const Stroller = sequelize.define('Stroller', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  tagline: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   alternativeModelNames: {
     type: DataTypes.JSON,
     allowNull: true,
