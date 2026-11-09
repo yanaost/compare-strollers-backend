@@ -12,7 +12,8 @@ const Stroller = sequelize.define('Stroller', {
     allowNull: false
   },
   modelDescription: {
-    type: DataTypes.STRING,
+    // Prose, and longer than 255 characters for some models.
+    type: DataTypes.TEXT,
     allowNull: true
   },
   tagline: {
