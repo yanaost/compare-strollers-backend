@@ -36,6 +36,15 @@ const Comparison = sequelize.define('Comparison', {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 0
+  },
+  // Which block the home page lists it under. A property of the row rather
+  // than a slug list in the frontend, so publishing a comparison and placing
+  // it stay one edit. Not derived from createdAt: the seeder writes every row
+  // in a single run, so they all share a timestamp.
+  isNew: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
   }
 },
 {

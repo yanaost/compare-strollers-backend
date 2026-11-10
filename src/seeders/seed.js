@@ -2662,7 +2662,20 @@ const seedDatabase = async () => {
       { slug: 'bugaboo-butterfly-vs-joolz-aer', title: 'Bugaboo Butterfly vs Joolz Aer', strollerIds: [2, 9], position: 8 },
       { slug: 'bugaboo-dragonfly-vs-joolz-hub-plus', title: 'Bugaboo Dragonfly vs Joolz Hub+', strollerIds: [4, 11], position: 9 },
       { slug: 'bugaboo-dragonfly-vs-joolz-aer', title: 'Bugaboo Dragonfly vs Joolz Aer', strollerIds: [4, 9], position: 10 },
-      { slug: 'cybex-gazelle-s-vs-cybex-e-priam-2022', title: 'Cybex Gazelle S vs Cybex e-Priam 2022', strollerIds: [5, 12], position: 11 }
+      { slug: 'cybex-gazelle-s-vs-cybex-e-priam-2022', title: 'Cybex Gazelle S vs Cybex e-Priam 2022', strollerIds: [5, 12], position: 11 },
+      { slug: 'bugaboo-fox-5-vs-bugaboo-donkey-6', title: 'Bugaboo Fox 5 vs Bugaboo Donkey 6', strollerIds: [3, 18], position: 12, isNew: true },
+      { slug: 'bugaboo-butterfly-vs-bugaboo-butterfly-2-plus', title: 'Bugaboo Butterfly vs Bugaboo Butterfly 2 Plus', strollerIds: [2, 16], position: 13, isNew: true },
+      { slug: 'joolz-aer-vs-joolz-aer-2', title: 'Joolz Aer vs Joolz Aer 2', strollerIds: [9, 21], position: 14, isNew: true },
+      { slug: 'bugaboo-butterfly-2-plus-vs-joolz-aer-2', title: 'Bugaboo Butterfly 2 Plus vs Joolz Aer 2', strollerIds: [16, 21], position: 15, isNew: true },
+      { slug: 'cybex-orfeo-vs-joolz-aer', title: 'Cybex Orfeo vs Joolz Aer', strollerIds: [8, 9], position: 16, isNew: true },
+      { slug: 'bugaboo-dragonfly-vs-silver-cross-breez', title: 'Bugaboo Dragonfly vs Silver Cross Breez', strollerIds: [4, 24], position: 17, isNew: true },
+      { slug: 'joolz-aer-vs-joolz-aer-plus', title: 'Joolz Aer vs Joolz Aer+', strollerIds: [9, 10], position: 18, isNew: true },
+      { slug: 'bugaboo-dragonfly-vs-nuna-triv-lx', title: 'Bugaboo Dragonfly vs Nuna Triv LX', strollerIds: [4, 20], position: 19, isNew: true },
+      { slug: 'bugaboo-butterfly-vs-uppababy-minu-duo', title: 'Bugaboo Butterfly vs UPPAbaby Minu Duo', strollerIds: [2, 15], position: 20, isNew: true },
+      { slug: 'bugaboo-dragonfly-vs-joolz-hub-2', title: 'Bugaboo Dragonfly vs Joolz Hub 2', strollerIds: [4, 22], position: 21, isNew: true },
+      { slug: 'silver-cross-breez-vs-silver-cross-nia', title: 'Silver Cross Breez vs Silver Cross Nia', strollerIds: [24, 26], position: 22, isNew: true },
+      { slug: 'joolz-aer-2-vs-silver-cross-nia', title: 'Joolz Aer 2 vs Silver Cross Nia', strollerIds: [21, 26], position: 23, isNew: true },
+      { slug: 'nuna-triv-lx-vs-silver-cross-breez', title: 'Nuna Triv LX vs Silver Cross Breez', strollerIds: [20, 24], position: 24, isNew: true }
     ]);
     // Create associations between strollers and feature groups
     for (const stroller of strollers) {
