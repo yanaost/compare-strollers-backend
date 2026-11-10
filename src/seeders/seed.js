@@ -1,4 +1,4 @@
-const { Stroller, Feature, StrollerFeatureValue, FeatureGroup } = require('../models');
+const { Stroller, Feature, StrollerFeatureValue, FeatureGroup, Comparison } = require('../models');
 
 const seedDatabase = async () => {
   try {
@@ -7,6 +7,7 @@ const seedDatabase = async () => {
     await Feature.destroy({ where: {} });
     await FeatureGroup.destroy({ where: {} });
     await Stroller.truncate({ cascade: true, restartIdentity: true });
+    await Comparison.destroy({ where: {} });
 
     // Create feature groups
     const featureGroups = await FeatureGroup.bulkCreate([
@@ -2643,6 +2644,26 @@ const seedDatabase = async () => {
     ];
 
   await StrollerFeatureValue.bulkCreate(strollerFeatureValue);
+
+    // The comparison pages. The frontend build turns each row into one static
+    // page, so this list is the site's indexable surface — adding a row and
+    // rebuilding is all it takes to publish a new comparison.
+    //
+    // `slug` is written out rather than derived from the model names so that
+    // renaming a stroller cannot move a page that is already indexed.
+    await Comparison.bulkCreate([
+      { slug: 'babyzen-yoyo-2-vs-bugaboo-butterfly', title: 'Babyzen Yoyo 2 vs Bugaboo Butterfly', strollerIds: [1, 2], position: 1 },
+      { slug: 'bugaboo-dragonfly-vs-bugaboo-fox-5', title: 'Bugaboo Dragonfly vs Bugaboo Fox 5', strollerIds: [4, 3], position: 2 },
+      { slug: 'bugaboo-butterfly-vs-cybex-libelle-2', title: 'Bugaboo Butterfly vs Cybex Libelle 2', strollerIds: [2, 7], position: 3 },
+      { slug: 'bugaboo-fox-5-vs-cybex-e-priam-2022', title: 'Bugaboo Fox 5 vs Cybex e-Priam 2022', strollerIds: [3, 12], position: 4 },
+      { slug: 'bugaboo-butterfly-vs-bugaboo-dragonfly', title: 'Bugaboo Butterfly vs Bugaboo Dragonfly', strollerIds: [2, 4], position: 5 },
+      { slug: 'babyzen-yoyo-2-vs-joolz-aer', title: 'Babyzen Yoyo 2 vs Joolz Aer', strollerIds: [1, 9], position: 6 },
+      { slug: 'bugaboo-butterfly-vs-joolz-aer-plus', title: 'Bugaboo Butterfly vs Joolz Aer+', strollerIds: [2, 10], position: 7 },
+      { slug: 'bugaboo-butterfly-vs-joolz-aer', title: 'Bugaboo Butterfly vs Joolz Aer', strollerIds: [2, 9], position: 8 },
+      { slug: 'bugaboo-dragonfly-vs-joolz-hub-plus', title: 'Bugaboo Dragonfly vs Joolz Hub+', strollerIds: [4, 11], position: 9 },
+      { slug: 'bugaboo-dragonfly-vs-joolz-aer', title: 'Bugaboo Dragonfly vs Joolz Aer', strollerIds: [4, 9], position: 10 },
+      { slug: 'cybex-gazelle-s-vs-cybex-e-priam-2022', title: 'Cybex Gazelle S vs Cybex e-Priam 2022', strollerIds: [5, 12], position: 11 }
+    ]);
     // Create associations between strollers and feature groups
     for (const stroller of strollers) {
       // Each stroller should be associated with all feature groups

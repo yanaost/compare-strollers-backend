@@ -3,6 +3,7 @@ const Stroller = require('./Stroller');
 const Feature = require('./Feature');
 const StrollerFeatureValue = require('./StrollerFeatureValue');
 const FeatureGroup = require('./FeatureGroup');
+const Comparison = require('./Comparison');
 
 // Define associations
 Stroller.belongsToMany(FeatureGroup, { 
@@ -56,5 +57,9 @@ module.exports = {
   Stroller,
   Feature,
   StrollerFeatureValue,
-  FeatureGroup
+  FeatureGroup,
+  // Standalone on purpose: a comparison references strollers by id in a JSON
+  // column, not through an association, so a stroller can be removed without
+  // cascading a page out of existence unnoticed.
+  Comparison
 }; 
